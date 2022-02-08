@@ -7,9 +7,9 @@ Files:
 - wasm_simd_inline.c: Using inline SIMD WASM
 - wasm_simd_intrinsics.c: Using the built-in wasm_simd128.h 
 
-In `Makefile`, change the location of your `clang` with wasm32 support.
+In `Makefile`, change the location of `clang_bin` to your `clang` with wasm32 support if not the default.
 
-`.wat` files are generated with `wasm2wat`. 
+`.wat` files are generated with [`wasm2wat`](https://github.com/WebAssembly/wabt). 
 
 ## Resources
 
