@@ -9,6 +9,8 @@ Files:
 
 In `Makefile`, change the location of your `clang` with wasm32 support.
 
+`.wat` files are generated with `wasm2wat`. 
+
 ## Resources
 
 From `llvm/lib/Target/WebAssembly/README.txt`:
