@@ -1,4 +1,0 @@
-wasm_simd_inline.wasm:000013a: error: type mismatch in v128.load, expected [i32] but got []
-wasm_simd_inline.wasm:0000142: error: type mismatch in v128.load, expected [i32] but got [v128]
-wasm_simd_inline.wasm:0000149: error: type mismatch in i32x4.mul, expected [v128, v128] but got [... i32, i32]
-wasm_simd_inline.wasm:000014d: error: type mismatch in v128.store, expected [i32, v128] but got [v128, v128]

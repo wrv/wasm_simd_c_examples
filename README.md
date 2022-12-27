@@ -4,12 +4,12 @@ This repo is a collection of basic examples on how to use SIMD WASM in C.
 
 Files:
 - wasm_inline.c: Using inline WASM
-- wasm_simd_inline.c: Using inline SIMD WASM
+- wasm_simd_inline.c: Using inline WASM SIMD
 - wasm_simd_intrinsics.c: Using the built-in wasm_simd128.h 
 
 In `Makefile`, change the location of `clang_bin` to your `clang` with wasm32 support if not the default.
 
-`.wat` files are generated with [`wasm2wat`](https://github.com/WebAssembly/wabt). 
+`.wat` files are generated with [`wasm2wat`](https://github.com/WebAssembly/wabt) (with SIMD extensions). 
 
 ## Resources
 
