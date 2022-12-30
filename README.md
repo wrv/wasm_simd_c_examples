@@ -8,7 +8,7 @@ as the SIMD enhanced wasm2c from [WABT](https://github.com/PLSysSec/wabt/tree/si
 We use the inner product function as an example: 
 
 ```math
-\sum_{i=1}^{4} \textbf{x_i} \cdot \textbf{y_i} = x_1y_1 + x_2y_2 + x_3y_3 + x_4y_4
+\sum_{i=1}^{4} \textbf{x}_i \cdot \textbf{y}_i = x_1y_1 + x_2y_2 + x_3y_3 + x_4y_4
 
 ```
 
