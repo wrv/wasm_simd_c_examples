@@ -4,7 +4,7 @@ int total_sum(int* in_a, int* in_b) {
   int src = 1;
   int dst;
   asm ("i32.const\t2\n"
-       "\tlocal.get\t%1\n"
+       "\tlocal.get\t%1\n" 
        "\ti32.add\n"
        "\tlocal.set\t%0"
        : "=r" (dst)

@@ -53,7 +53,7 @@ int main(int argc, char** argv) {
     wasm_simd_inline_instance.w2c_memory.data[loc_b+3] = (in_b[i] >> 24) & 0xff; 
   }
   
-  printf("- SIMD Add then sum result\n");
+  printf("- Add then sum result\n");
 
   int total = Z_wasm_simd_inlineZ_total_sum(&wasm_simd_inline_instance, sbx_a, sbx_b);
   printf("Total: %d \n", total);

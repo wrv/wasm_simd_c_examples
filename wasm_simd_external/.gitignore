@@ -1,0 +1,8 @@
+*.wasm
+*.wasm2c.c
+*.wasm2c.h
+*.txt
+*.out
+*.err
+*.int.wat
+*.fun.wasm
