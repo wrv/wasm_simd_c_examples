@@ -1,6 +1,5 @@
 #include <wasm_simd128.h>
 
-// example from https://v8.dev/features/simd
 int total_sum(int* in_a, int* in_b) {
   int out[4];
   v128_t a = wasm_v128_load(in_a);

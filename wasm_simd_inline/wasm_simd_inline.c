@@ -1,4 +1,4 @@
-//// This version works, but is a combination of in-line and intrinsics. 
+//// A version with a combination of in-line and intrinsics. 
 // #include <wasm_simd128.h>
 // 
 // int total_sum(int* in_a, int* in_b) {
@@ -28,13 +28,7 @@ int total_sum(int* in_a, int* in_b) {
   int total;
   
   // STACK: [0, 1, ..., n]
-  // NOTE: for some reason, we can't use local.get or local.set on v128 types, so 
-  //       we resort to doing v128 loads and stores. It would be much more efficient
-  //       if we could avoid the v128.loads. 
-  // 
-  //       Looking at the .wat output for an -O3 optimized intrinsics output, it seems
-  //       like we'd need to create a local v128 variable in order to be able to do the
-  //       local.get/.set but I'm not sure how to do that with in-line assembly atm. 
+
   asm("i32.const 0\n"             // The address we will store our multiplied v128  STACK: [addr0]
       "local.get %1\n"            // Get the first pointer onto the stack           STACK: [addr0, in_a]
       "v128.load 0\n"             // Use the pointer to load a v128 onto the stack. 

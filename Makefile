@@ -57,6 +57,27 @@ simd_external: wasm_simd_external/wasm_simd_external.c wasm_simd_external/wasm_s
 					$(wasm2c_folder)/wasm-rt-impl.c
 	./wasm_simd_external/wasm_simd_external.wasm2c.out 1337
 
+simd_simde: wasm_simde/wasm_simde.c
+	$(wasi_sdk_path)/bin/clang wasm_simde/wasm_simde.c -o wasm_simde/wasm_simde.int.wasm --sysroot $(wasi_sdk_path)/share/wasi-sysroot -msimd128 -c -O3 -DSIMDE_ENABLE_NATIVE_ALIASES -I$(simde_folder)
+	$(wasi_sdk_path)/bin/wasm-ld -m wasm32 \
+				--export-all \
+				--no-entry \
+				--growable-table \
+				--stack-first \
+				-z stack-size=1048576 \
+				wasm_simde/wasm_simde.int.wasm \
+				-o wasm_simde/wasm_simde.wasm
+	$(wabt_bin_path)/wasm2wat wasm_simde/wasm_simde.wasm -o wasm_simde/wasm_simde.wat
+	$(wabt_bin_path)/wasm2wat wasm_simde/wasm_simde.int.wasm -o wasm_simde/wasm_simde.int.wat
+	$(wabt_bin_path)/wasm2c wasm_simde/wasm_simde.wasm \
+				-o wasm_simde/wasm_simde.wasm2c.c &> wasm_simde/wasm_simde.wasm2c.verbose_log.txt
+	clang -DWASM_RT_ENABLE_SIMD -I$(wasm2c_folder) -I$(simde_folder) \
+					-lm -o wasm_simde/wasm_simde.wasm2c.out \
+					-mavx \
+					wasm_simde/wasm_simde.main.c \
+					wasm_simde/wasm_simde.wasm2c.c \
+					$(wasm2c_folder)/wasm-rt-impl.c
+	./wasm_simde/wasm_simde.wasm2c.out 1337
 
 clean:
 	rm *.wasm *.wat *.err *.wasm2c.c *.wasm2c.h *.ll *.out 

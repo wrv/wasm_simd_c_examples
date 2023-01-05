@@ -31,6 +31,7 @@ int total_sum(int* in_a, int* in_b) {
   v128_t local; 
   
   // STACK: [0, 1, ..., n]
+  
   asm("local.get %2\n"            // Get the first pointer onto the stack           STACK: [in_a]
       "v128.load 0\n"             // Use the pointer to load a v128 onto the stack. 
                                   // The '0' is the offset from the loaded address. STACK: [v128_a]
