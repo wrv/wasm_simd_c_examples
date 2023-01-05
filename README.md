@@ -12,7 +12,7 @@ We use the inner product function as an example:
 
 ```
 
-There are four examples for incorporating WASM+SIMD with C code:
+There are five examples for incorporating WASM+SIMD with C code:
 1. Inline WASM [`wasm_inline/`](wasm_inline/wasm_inline.c): This uses non-SIMD inline WASM, and is included as another example.
 2. Inline WASMSIMD [`wasm_simd_inline/`](wasm_simd_inline/wasm_simd_inline.c): Uses SIMD inline WASM without `wasm_simd128.h`
 3. Inline WASMSIMD with locals [`wasm_simd_inline2/`](wasm_simd_inline2/wasm_simd_inline.c): Uses SIMD inline WASM but creates a local v128 variable.
