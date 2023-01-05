@@ -13,10 +13,11 @@ We use the inner product function as an example:
 ```
 
 There are four examples for incorporating WASM+SIMD with C code:
-1. Inline WASM (`wasm_inline/`): This uses non-SIMD inline WASM, and is included as another example.
-2. Inline WASMSIMD (`wasm_simd_inline/`): Uses SIMD inline WASM
-3. Intrinsics WASMSIMD (`wasm_simd_external/`): Using the built-in `wasm_simd128.h` for intrinsics
-4. External WASMSIMD (`wasm_simd_external/`): Uses a separate .wat file that is linked to and externally called from C.
+1. Inline WASM [`wasm_inline/`](wasm_inline/wasm_inline.c): This uses non-SIMD inline WASM, and is included as another example.
+2. Inline WASMSIMD [`wasm_simd_inline/`](wasm_simd_inline/wasm_simd_inline.c): Uses SIMD inline WASM without `wasm_simd128.h`
+3. Inline WASMSIMD with locals [`wasm_simd_inline2/`](wasm_simd_inline2/wasm_simd_inline.c): Uses SIMD inline WASM but creates a local v128 variable.
+4. Intrinsics WASMSIMD [`wasm_simd_intrinsics/`](wasm_simd_intrinsics/wasm_simd_intrinsics.c): Using the built-in `wasm_simd128.h` for intrinsics
+5. External WASMSIMD [`wasm_simd_external/`](wasm_simd_external/wasm_simd_external.c): Uses a separate .wat file that is linked to and externally called from C. 
 
 The examples are in the `<name>.c` file in each folder. The `<name>.main.c` is to call into these functions after 
 they've been passed through `wasm2c`. 
@@ -26,8 +27,9 @@ they've been passed through `wasm2c`.
 Update the paths in `Makefile` to the location of WASI and WABT. You can then call either `make` or for a specific example:
 1. `make wasm_inline`
 2. `make simd_inline`
-3. `make simd_intrinsics`
-4. `make simd_external`
+3. `make simd_inline2`
+4. `make simd_intrinsics`
+5. `make simd_external`
 
 ### Process 
 
@@ -40,8 +42,8 @@ using `wasm2c`, then compile the `.main.c` file with the `wasm2c` output.
 ## Notes
 
 After creating these examples, likely the easiest way to work with WASMSIMD in C is with intrinsics, with the second easiest way 
-being the external `.wat` file. The main reason I say this is because I'm not currently sure how to create a local v128 variable
-with inline WASMSIMD, increasing the number of instructions required. 
+being the external `.wat` file. Using inline WASM SIMD may be okay, but observations so far have shown that the compiler does 
+a good job of optimizing the WASM. 
 
 ## Resources
 
@@ -57,3 +59,4 @@ For more information on WebAssembly itself, see the home page:
   * https://webassembly.github.io/
 ```
 
+The single LLVM test testing inline WASM: [inline-asm-roundtrip.ll](https://github.com/llvm/llvm-project/blob/main/llvm/test/CodeGen/WebAssembly/inline-asm-roundtrip.ll). 

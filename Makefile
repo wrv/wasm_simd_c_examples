@@ -1,6 +1,6 @@
-wabt_bin_path := ../plsyssec_wabt/build
-wasm2c_folder := ../plsyssec_wabt/wasm2c/
-simde_folder := ../plsyssec_wabt/third_party/simde/
+wabt_bin_path := ../wabt_plsyssec/build
+wasm2c_folder := ../wabt_plsyssec/wasm2c/
+simde_folder := ../wabt_plsyssec/third_party/simde/
 wasi_sdk_path := ../wasi-sdk-14.0
 
 define generic_build
@@ -31,6 +31,9 @@ wasm_inline: wasm_inline/wasm_inline.c
 
 simd_inline: wasm_simd_inline/wasm_simd_inline.c
 	$(call generic_build,wasm_simd_inline/wasm_simd_inline)
+
+simd_inline2: wasm_simd_inline2/wasm_simd_inline.c
+	$(call generic_build,wasm_simd_inline2/wasm_simd_inline)
 
 simd_external: wasm_simd_external/wasm_simd_external.c wasm_simd_external/wasm_simd_external.wat
 	$(wasi_sdk_path)/bin/clang wasm_simd_external/wasm_simd_external.c -o wasm_simd_external/wasm_simd_external.int.wasm --sysroot $(wasi_sdk_path)/share/wasi-sysroot -msimd128 -c -O3
