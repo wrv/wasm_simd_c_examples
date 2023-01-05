@@ -19,7 +19,7 @@ There are six examples for incorporating WASM+SIMD with C code:
 3. Inline WASMSIMD with locals [`wasm_simd_inline2/`](wasm_simd_inline2/wasm_simd_inline.c): Uses SIMD inline WASM but creates a local v128 variable.
 4. Intrinsics WASMSIMD [`wasm_simd_intrinsics/`](wasm_simd_intrinsics/wasm_simd_intrinsics.c): Using the built-in `wasm_simd128.h` for intrinsics
 5. External WASMSIMD [`wasm_simd_external/`](wasm_simd_external/wasm_simd_external.c): Uses a separate .wat file that is linked to and externally called from C. 
-6. SIMD Everywhere WASMSIMD [`wasm_simde/](wasm_simde/wasm_simde.c): Use SIMDe to translate AVX2 intrinsics to corresponding WASMSIMD intrinsics. Because 
+6. SIMD Everywhere WASMSIMD [`wasm_simde/`](wasm_simde/wasm_simde.c): Use SIMDe to translate AVX2 intrinsics to corresponding WASMSIMD intrinsics. Because 
 wasm2c also uses SIMDe, the library is used twice.  
 
 The examples are in the `<name>.c` file in each folder. The `<name>.main.c` is to call into these functions after 
